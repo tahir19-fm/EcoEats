@@ -1,4 +1,4 @@
-package com.example.ecoeats.donor.donorScreens
+package com.example.ecoeats.collector.collectorScreens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -10,24 +10,24 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.ecoeats.ui.theme.*
-
+import com.example.ecoeats.donor.donorScreens.*
+import com.example.ecoeats.donor.donorScreens.HomeItemCard
+import com.example.ecoeats.ui.theme.Green500
+import com.example.ecoeats.ui.theme.Red500
 @Preview
 @Composable
-fun HomeScreen(){
-    HomeItemList()
+fun DonerRequestScreen(){
+   DonerListItem()
 }
 
 @Composable
-fun HomeItemList(){
+fun DonerListItem(){
     LazyColumn(modifier = Modifier
         .padding(10.dp)
         .fillMaxWidth(), contentPadding = PaddingValues(bottom = 70.dp)
@@ -41,7 +41,7 @@ fun HomeItemList(){
         }
         item { Spacer(modifier = Modifier.size(5.dp)) }
         items(10){
-            HomeItemCard()
+            DonerItemCard()
             Row {
                 Spacer(modifier = Modifier.width(100.dp))
                 Divider(
@@ -53,10 +53,8 @@ fun HomeItemList(){
 
     }
 }
-
-
 @Composable
-fun HomeItemCard(){
+fun DonerItemCard(){
     Box(modifier = Modifier
         .fillMaxWidth()
         .height(110.dp)
@@ -68,60 +66,21 @@ fun HomeItemCard(){
                 FoodImageContainer()
                 Spacer(modifier = Modifier.size(10.dp))
                 Column(modifier = Modifier.padding(5.dp)) {
+                    //food source name
                     FoodName(name = "safjadsnfkjndsa")
                     FoodLocation(location = "afjhkjdfa asdkjfhaksdjfh dafdsfdsffffff")
                     Row(verticalAlignment = Alignment.CenterVertically ) {
                         FoodQuantity(quantity = "3 KG")
                         Spacer(modifier = Modifier.size(5.dp))
-                        FoodLifeBox(expired = false)
+//                        FoodLifeBox(expired = false)
                     }
                 }
             }
+            MissonIcon(completed = true)
+          
         }
     }
 }
-
-@Composable
-fun FoodImageContainer(size : Int = 70){
-    Box(modifier = Modifier
-        .size(size.dp)
-        .background(Color.Red) , contentAlignment = Alignment.Center , ){
-
-    }
-}
-@Composable
-fun FoodLocation(location : String , maxLength : Int = 14){
-   Text(
-        text = if (location.length > maxLength) "${location.take(maxLength)}..." else location,
-        fontSize = 15.sp,  maxLines = 1
-    )
-}
-
-@Composable
-fun FoodName(name : String){
-    Text(text = name)
-}
-
-@Composable
-fun FoodQuantity(quantity : String){
-    Text(text = quantity)
-}
-
-@Composable
-fun FoodLifeBox(expired : Boolean){
-    Box(modifier =Modifier
-        .background(if (!expired) Green100 else Red100)
-        .width(60.dp)
-        .height(17.dp),
-        contentAlignment = Alignment.Center) {
-        Text(
-            text = if (!expired) "unexpired" else "expired",
-            fontSize = 9.sp,
-            color = if (!expired) Green600 else Red600,
-        )
-    }
-}
-
 
 @Composable
 fun MissonIcon(completed: Boolean , size: Int = 20 , iconSize : Int = 12,){
