@@ -1,4 +1,5 @@
 package com.example.ecoeats.collector.collectorNavigation
 
-class x {
+enum class CollectorScreens {
+
 }
